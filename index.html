@@ -138,8 +138,26 @@
 
   /* ABOUT */
   .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    display: grid; grid-template-columns: 280px 1fr 1fr; gap: 60px;
     align-items: start;
+  }
+  .profile-image-wrapper {
+    position: relative;
+  }
+  .profile-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid var(--sand);
+    border-radius: 8px;
+    overflow: hidden;
+    filter: sepia(0.12) saturate(1.05) brightness(0.96);
+    transition: all 0.4s ease;
+  }
+  .profile-image:hover {
+    filter: sepia(0.08) saturate(1.1) brightness(1);
+    border-color: var(--sand-light);
+    box-shadow: 0 8px 24px rgba(212, 160, 84, 0.15);
   }
   .about-text { font-size: 16px; line-height: 1.8; color: var(--cream-dim); }
   .about-text p + p { margin-top: 16px; }
@@ -161,6 +179,36 @@
     font-size: 10px; letter-spacing: 3px;
     text-transform: uppercase; color: var(--cream-dim);
     margin-top: 4px;
+  }
+
+  /* PROFILE IMAGE */
+  .profile-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .profile-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 2px solid var(--sand);
+    border-radius: 8px;
+    overflow: hidden;
+    filter: sepia(0.15) saturate(1.1) brightness(0.95);
+    transition: all 0.4s ease;
+  }
+  .profile-image:hover {
+    filter: sepia(0.08) saturate(1.2) brightness(1);
+    border-color: var(--sand-light);
+  }
+  .profile-image-frame {
+    position: absolute;
+    inset: -6px;
+    border: 1px solid var(--sand);
+    border-radius: 12px;
+    opacity: 0.3;
+    pointer-events: none;
   }
 
   /* MAP */
@@ -615,6 +663,9 @@
   <div class="reveal">
     <div class="section-label">// About</div>
     <div class="about-grid">
+      <div class="profile-image-wrapper">
+        <img src="rafi photo linkeding.png" alt="Muhammad Rafi" class="profile-image">
+      </div>
       <div>
         <h2 class="section-title">The Data Must Flow</h2>
         <div class="about-text">
