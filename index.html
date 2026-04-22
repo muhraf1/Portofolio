@@ -140,8 +140,19 @@
 
   /* ABOUT */
   .about-grid {
-    display: grid; grid-template-columns: 280px 1fr 1fr; gap: 60px;
-    align-items: start;
+    display: flex; flex-direction: column; gap: 40px;
+  }
+  .about-top-row {
+    display: flex; gap: 48px; align-items: flex-start;
+  }
+  .about-top-row .profile-image-wrapper {
+    width: 220px; flex-shrink: 0;
+  }
+  .about-top-row .stats-grid {
+    flex: 1;
+  }
+  .about-bottom-row {
+    width: 100%;
   }
   .profile-image-wrapper {
     position: relative;
@@ -674,31 +685,19 @@
   <div class="reveal">
     <div class="section-label">// About</div>
     <div class="about-grid">
-      <div class="profile-image-wrapper">
-        <img src="rafi photo linkeding.png" alt="Muhammad Rafi" class="profile-image">
+      <div class="about-top-row">
+        <div class="profile-image-wrapper">
+          <img src="rafi photo linkeding.png" alt="Muhammad Rafi" class="profile-image">
+        </div>
+        <div class="stats-grid"></div>
       </div>
-      <div>
+      <div class="about-bottom-row">
         <h2 class="section-title">The Data Must Flow</h2>
         <div class="about-text">
           <p>I'm an onchain data and research analyst based in Jakarta, specializing in protocol analytics and stablecoin ecosystems across emerging markets.</p>
           <p>My work includes institutional-grade Dune Analytics dashboards covering stablecoin adoption in APAC, LATAM, and Africa, and protocol-level research that has been referenced by major L1s, L2s, and industry data networks.</p>
           <p>Currently serving as the Southeast Asia Regional Researcher for Scroll DAO's Delegates Contribution Program (DCP 1), producing the State of Scroll regional report covering Malaysia and Indonesia.</p>
         </div>
-      </div>
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-num">41</div>
-          <div class="stat-label">Stablecoins Projects</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">14</div>
-          <div class="stat-label">EVM Chains</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">4</div>
-          <div class="stat-label">Onchain Dashboard</div>
-        </div>
-       
       </div>
     </div>
   </div>
