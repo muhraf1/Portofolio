@@ -107,6 +107,10 @@
       letter-spacing: 4px;
     }
 
+    .nav-toggle {
+      display: none;
+    }
+
     /* HERO */
     .hero {
       position: relative;
@@ -993,8 +997,84 @@
         padding: 16px 24px;
       }
 
+      .nav-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 8px;
+        z-index: 200;
+      }
+
+      .hamburger {
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: var(--sand);
+        position: relative;
+        transition: background 0.3s;
+      }
+
+      .hamburger::before,
+      .hamburger::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background: var(--sand);
+        transition: all 0.3s;
+        left: 0;
+      }
+
+      .hamburger::before {
+        top: -6px;
+      }
+
+      .hamburger::after {
+        bottom: -6px;
+      }
+
+      .nav-toggle.open .hamburger {
+        background: transparent;
+      }
+
+      .nav-toggle.open .hamburger::before {
+        transform: rotate(45deg);
+        top: 0;
+      }
+
+      .nav-toggle.open .hamburger::after {
+        transform: rotate(-45deg);
+        bottom: 0;
+      }
+
       .nav-links {
-        display: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: rgba(12, 10, 8, 0.98);
+        backdrop-filter: blur(16px);
+        gap: 24px;
+        transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 150;
+        padding: 40px;
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 18px;
+        letter-spacing: 3px;
       }
 
       section,
@@ -1002,14 +1082,57 @@
         padding: 80px 24px;
       }
 
+      .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+      }
+
+      .hero-cta .btn {
+        width: 100%;
+        text-align: center;
+      }
+
       .about-grid {
-        grid-template-columns: 1fr;
         gap: 40px;
+      }
+
+      .about-top-row {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 32px;
+      }
+
+      .about-top-row .profile-image-wrapper {
+        width: 180px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .research-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .map-legend {
+        flex-wrap: wrap;
+        gap: 16px;
       }
 
       .cred-item {
         grid-template-columns: 1fr;
         gap: 4px;
+      }
+
+      .tweaks-panel {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        width: auto;
+        max-height: 50vh;
       }
 
       footer {
@@ -1133,6 +1256,9 @@
         </svg>
       </a>
     </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span class="hamburger"></span>
+    </button>
   </nav>
 
   <!-- PARTICLES -->
@@ -1895,6 +2021,34 @@
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (navToggle && navLinks) {
+      navToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        navToggle.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+
+      // Close menu when a link is clicked
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
+          navToggle.classList.remove('open');
+          navLinks.classList.remove('open');
+        }
+      });
+    }
 
     // TWEAKS edit mode
     window.addEventListener('message', (e) => {
